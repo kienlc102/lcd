@@ -108,7 +108,7 @@ class MiniGame():
         try:
             while True:
                 self.clear()
-                self.draw_text(self.player.block, (self.player.x, self.player.y))
+                self.draw_text(self.player.block, (self.ball.x + 10, self.ball.y + 10))
                 self.draw_text("*", (self.ball.x, self.ball.y))
                 time.sleep(5)
         except KeyboardInterrupt:
