@@ -130,14 +130,15 @@ class MiniGame():
                 self.ball.y += dy
                 if self.ball.x <= 0 or self.ball.x >= 159:
                     dx = -dx
-                    speed /= 2
+                    speed -= speed * 0.1
                     print("speed:", speed)
                 if self.ball.y <= 0 or self.Collision():
                     dy = -dy
-                    speed /= 2
+                    speed -= speed * 0.1
                     print("speed:", speed)
                 if self.ball.y >= 127:
-                    self.draw_only("Game Over!", (50, 50), (255,0,0))
+                    score = 1 / speed
+                    self.draw_only(f"Your score: {score}", (50, 50), (255,0,0))
                     time.sleep(2)
                     self.Start()
                     break
