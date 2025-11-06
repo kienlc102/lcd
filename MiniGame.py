@@ -105,7 +105,7 @@ class MiniGame():
 
     def Collision(self):
         if self.ball.y > self.player.y:
-            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block):
+            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + 5:
                 return True
         return False
 
