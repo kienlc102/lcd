@@ -103,14 +103,36 @@ class MiniGame():
         except Exception as e:
             print("Displayer sleep error: ", e)
 
+    def Collision(self):
+        if self.ball.y >= self.player.y:
+            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block)*8:
+                return True
+        return False
+
     def game_loop(self):
         self.active()
         self.setupGPIO()
         try:
+            dx, dy = 1, 1
             while True:
                 self.clear()
                 self.draw_text(self.player.block, (self.player.x, self.player.y), self.ball.block, (self.ball.x, self.ball.y))
-                time.sleep(5)
+                
+                # Ball movement
+                self.ball.x += dx
+                self.ball.y += dy
+                if self.ball.x <= 0 or self.ball.x >= 159:
+                    dx = -dx
+                if self.ball.y <= 0 or self.Collision():
+                    dy = -dy
+
+                # Player movement
+                if GPIO.input(self.left) == GPIO.LOW:
+                    self.player.goLeft()
+                if GPIO.input(self.right) == GPIO.LOW:
+                    self.player.goRight()
+                time.sleep(0.2)
+                
         except KeyboardInterrupt:
             print("Exiting game loop...")
         finally:
