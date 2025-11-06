@@ -27,7 +27,7 @@ class MiniGame():
             self.left = 13
             self.right = 7
             self.enter = 22
-            self.player = player.player(60, 80)
+            self.player = player.player("--",60, 80)
             self.ball = ball.ball(0, 0)
     
     def active(self):
