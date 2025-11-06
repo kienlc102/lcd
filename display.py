@@ -28,6 +28,9 @@ class Displayer():
         try:
             self.disp = None
             self.switch = 17
+            self.left = 7
+            self.right = 13
+            self.enter = 22
         except IOError as e:
             logging.info(e) 
     
@@ -121,7 +124,7 @@ class Displayer():
         #need2check
         #exit()
     
-    def draw_text(self, text, position=(10,10), color=(255,255,255)):
+    def draw_text(self, text, position, color=(255,255,255)):
         if self.disp is None:
             self.active()
         image = Image.new("RGB", (160, 128), (0,0,0))
@@ -129,6 +132,38 @@ class Displayer():
         font = ImageFont.load_default()
         draw.text(position, text, font=font, fill=color)
         self.show_frame(image)
+    
+    def testButton(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.switch, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.enter, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        
+        try:
+            while True:
+                if GPIO.input(self.switch) == GPIO.LOW:
+                    self.clear()
+                    self.draw_text("Switch Pressed")
+                    print("Switch Pressed")
+                if GPIO.input(self.left) == GPIO.LOW:
+                    self.clear()
+                    self.draw_text("Left Pressed")
+                    print("Left Pressed")
+                if GPIO.input(self.right) == GPIO.LOW:
+                    self.clear()
+                    self.draw_text("Right Pressed")
+                    print("Right Pressed")
+                if GPIO.input(self.enter) == GPIO.LOW:
+                    self.clear()
+                    self.draw_text("Enter Pressed")
+                    print("Enter Pressed")
+                time.sleep(0.2)
+        except KeyboardInterrupt:
+            print("Exiting testButton")
+        finally:
+            GPIO.cleanup()
+
 
     
 

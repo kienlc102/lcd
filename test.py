@@ -7,8 +7,7 @@ image = Image.open(image_path)
 test = Displayer()
 test.active()
 
-test.draw_text("dep trai")
 while 1:
-    time.sleep(1)
+    test.testButton()
 
 
