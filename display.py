@@ -143,7 +143,6 @@ class Displayer():
         
         try:
             while True:
-                print(GPIO.input(self.left))
                 if GPIO.input(self.left) == GPIO.LOW:
                     self.clear()
                     self.draw_text("Left Pressed", (10, 50))
