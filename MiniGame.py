@@ -111,6 +111,13 @@ class MiniGame():
 
     def game_loop(self):
         try:
+            # Setup game variables
+            #player
+            self.player.x = 60
+            self.player.y = 80
+            #ball
+            self.ball.x = 0
+            self.ball.y = 0
             dx, dy = 3, 3
             while True:
                 self.clear()
