@@ -27,8 +27,8 @@ class MiniGame():
             self.left = 13
             self.right = 7
             self.enter = 22
-            self.player = player.player("***",60, 80)
-            self.ball = ball.ball(0, 0)
+            self.player = player.player("---",60, 80)
+            self.ball = ball.ball("*",0, 0)
     
     def active(self):
         if self.disp is None:
@@ -62,13 +62,14 @@ class MiniGame():
             logging.info("quit:")
             exit()
 
-    def draw_text(self, text, position, color=(255,255,255)):
+    def draw_text(self, player, playerPosition, ball, ballPosition, color=(255,255,255)):
         if self.disp is None:
             self.active()
         image = Image.new("RGB", (160, 128), (0,0,0))
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
-        draw.text(position, text, font=font, fill=color)
+        draw.text(playerPosition, player, font=font, fill=color)
+        draw.text(ballPosition, ball, font=font, fill=color)
         self.show_frame(image)
 
     def clear(self):
@@ -108,8 +109,7 @@ class MiniGame():
         try:
             while True:
                 self.clear()
-                self.draw_text(self.player.block, (self.player.x + 10, self.player.y + 10))
-                self.draw_text("*", (self.ball.x, self.ball.y))
+                self.draw_text(self.player.block, (self.player.x, self.player.y), self.ball.block, (self.ball.x, self.ball.y))
                 time.sleep(5)
         except KeyboardInterrupt:
             print("Exiting game loop...")
