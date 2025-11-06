@@ -121,6 +121,7 @@ class MiniGame():
             dx, dy = 3, 3
             #speed
             speed = 0.1
+            dspeed = 0.01
             while True:
                 self.clear()
                 self.draw_text(self.player.block, (self.player.x, self.player.y), self.ball.block, (self.ball.x, self.ball.y))
@@ -130,14 +131,16 @@ class MiniGame():
                 self.ball.y += dy
                 if self.ball.x <= 0 or self.ball.x >= 159:
                     dx = -dx
-                    speed -= speed * 0.1
+                    speed -= dspeed
                     print("speed:", speed)
                 if self.ball.y <= 0 or self.Collision():
                     dy = -dy
-                    speed -= speed * 0.1
+                    speed -= dspeed
                     print("speed:", speed)
+                if 2*dspeed > speed:
+                    dspeed = dspeed / 10
                 if self.ball.y >= 127:
-                    score = 1 / speed
+                    score = 1 / (speed*10)
                     self.draw_only(f"Your score: {score}", (50, 50), (255,0,0))
                     time.sleep(2)
                     self.Start()
