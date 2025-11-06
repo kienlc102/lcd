@@ -5,7 +5,7 @@ class player:
             self.block = block
     
     def goLeft(self):
-        self.x -= 1
+        self.x -= 3
 
     def goRight(self):
-        self.x += 1
+        self.x += 3

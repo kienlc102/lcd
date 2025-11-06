@@ -113,7 +113,7 @@ class MiniGame():
         self.active()
         self.setupGPIO()
         try:
-            dx, dy = 1, 1
+            dx, dy = 3, 3
             while True:
                 self.clear()
                 self.draw_text(self.player.block, (self.player.x, self.player.y), self.ball.block, (self.ball.x, self.ball.y))
@@ -131,7 +131,7 @@ class MiniGame():
                     self.player.goLeft()
                 if GPIO.input(self.right) == GPIO.LOW:
                     self.player.goRight()
-                time.sleep(0.2)
+                time.sleep(0.1)
                 
         except KeyboardInterrupt:
             print("Exiting game loop...")
