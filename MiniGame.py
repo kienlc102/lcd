@@ -110,7 +110,7 @@ class MiniGame():
                 self.clear()
                 self.draw_text(self.player.block, (self.player.x, self.player.y))
                 self.draw_text("*", (self.ball.x, self.ball.y))
-                time.sleep(0.5)
+                time.sleep(5)
         except KeyboardInterrupt:
             print("Exiting game loop...")
         finally:
