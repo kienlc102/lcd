@@ -137,11 +137,20 @@ class MiniGame():
             self.sleep()
             self.stop()
 
+    def draw_only(self, text, position, color=(255,255,255)):
+        if self.disp is None:
+            self.active()
+        image = Image.new("RGB", (160, 128), (0,0,0))
+        draw = ImageDraw.Draw(image)
+        font = ImageFont.load_default()
+        draw.text(position, text, font=font, fill=color)
+        self.show_frame(image)
+
     def Start(self):
         self.active()
         self.setupGPIO()
         while True:
-            self.draw_text("Press Enter to Start", (10, 50))
+            self.draw_only("Press Enter to Start", (10, 50))
             if GPIO.input(self.enter) == GPIO.LOW:
                 break
         self.game_loop()
