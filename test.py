@@ -1,13 +1,20 @@
 from display import Displayer
 from PIL import Image
-import time
+
 image_path = "/home/pi/kien/lcd/alo1.jpg"
 
-image = Image.open(image_path)
-test = Displayer()
-test.active()
+# Khởi tạo LCD
+lcd = Displayer()
+lcd.active()
 
-while 1:
-    test.testButton()
+# Hiển thị ảnh lúc khởi động
+lcd.show(image_path)
 
-
+# Chạy test nút nhấn
+try:
+    lcd.testButton()
+except KeyboardInterrupt:
+    print("Exiting...")
+finally:
+    lcd.sleep()
+    lcd.stop()
