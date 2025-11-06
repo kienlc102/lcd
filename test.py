@@ -1,18 +1,4 @@
-from display import Displayer
-from PIL import Image
+import MiniGame as mg
 
-
-# Khởi tạo LCD
-lcd = Displayer()
-lcd.active()
-
-
-
-# Chạy test nút nhấn
-try:
-    lcd.testButton()
-except KeyboardInterrupt:
-    print("Exiting...")
-finally:
-    lcd.sleep()
-    lcd.stop()
+game = mg.MiniGame()
+game.game_loop()
