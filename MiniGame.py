@@ -104,8 +104,8 @@ class MiniGame():
             print("Displayer sleep error: ", e)
 
     def Collision(self):
-        if self.ball.y > self.player.y:
-            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + 5:
+        if self.ball.y >= self.player.y:
+            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block)*8:
                 return True
         return False
 
@@ -119,6 +119,8 @@ class MiniGame():
             self.ball.x = 0
             self.ball.y = 0
             dx, dy = 3, 3
+            #speed
+            speed = 0.1
             while True:
                 self.clear()
                 self.draw_text(self.player.block, (self.player.x, self.player.y), self.ball.block, (self.ball.x, self.ball.y))
@@ -128,8 +130,10 @@ class MiniGame():
                 self.ball.y += dy
                 if self.ball.x <= 0 or self.ball.x >= 159:
                     dx = -dx
+                    speed /= 2
                 if self.ball.y <= 0 or self.Collision():
                     dy = -dy
+                    speed /= 2
                 if self.ball.y >= 127:
                     self.draw_only("Game Over!", (50, 50), (255,0,0))
                     time.sleep(2)
@@ -143,7 +147,7 @@ class MiniGame():
                     self.player.goRight()
 
                 
-                time.sleep(0.1)
+                time.sleep(speed)
                 
         except KeyboardInterrupt:
             print("Exiting game loop...")
