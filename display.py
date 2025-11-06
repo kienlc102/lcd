@@ -136,7 +136,6 @@ class Displayer():
     def testButton(self):
         print("Starting testButton...")
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.switch, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.enter, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -144,19 +143,15 @@ class Displayer():
         
         try:
             while True:
-                if GPIO.input(self.switch) == GPIO.LOW:
-                    self.clear()
-                    self.draw_text("Switch Pressed")
-                    print("Switch Pressed")
-                if GPIO.input(self.left) == GPIO.LOW:
+                if GPIO.input(self.left) == GPIO.HIGH:
                     self.clear()
                     self.draw_text("Left Pressed")
                     print("Left Pressed")
-                if GPIO.input(self.right) == GPIO.LOW:
+                if GPIO.input(self.right) == GPIO.HIGH:
                     self.clear()
                     self.draw_text("Right Pressed")
                     print("Right Pressed")
-                if GPIO.input(self.enter) == GPIO.LOW:
+                if GPIO.input(self.enter) == GPIO.HIGH:
                     self.clear()
                     self.draw_text("Enter Pressed")
                     print("Enter Pressed")
