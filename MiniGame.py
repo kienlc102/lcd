@@ -104,7 +104,7 @@ class MiniGame():
             print("Displayer sleep error: ", e)
 
     def Collision(self):
-        if self.ball.y >= self.player.y:
+        if self.ball.y > self.player.y:
             if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block):
                 return True
         return False
@@ -124,7 +124,8 @@ class MiniGame():
                 if self.ball.y <= 0 or self.Collision():
                     dy = -dy
                 if self.ball.y >= 127:
-                    print("Game Over!")
+                    self.draw_only("Game Over!", (50, 50), (255,0,0))
+                    time.sleep(2)
                     self.Start()
                     break
 
