@@ -145,15 +145,15 @@ class Displayer():
             while True:
                 if GPIO.input(self.left) == GPIO.HIGH:
                     self.clear()
-                    self.draw_text("Left Pressed")
+                    self.draw_text("Left Pressed", (10, 50))
                     print("Left Pressed")
                 if GPIO.input(self.right) == GPIO.HIGH:
                     self.clear()
-                    self.draw_text("Right Pressed")
+                    self.draw_text("Right Pressed", (10, 50))
                     print("Right Pressed")
                 if GPIO.input(self.enter) == GPIO.HIGH:
                     self.clear()
-                    self.draw_text("Enter Pressed")
+                    self.draw_text("Enter Pressed", (10, 50))
                     print("Enter Pressed")
                 time.sleep(0.2)
         except KeyboardInterrupt:
