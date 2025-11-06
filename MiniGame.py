@@ -105,13 +105,11 @@ class MiniGame():
 
     def Collision(self):
         if self.ball.y >= self.player.y:
-            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block)*8:
+            if self.ball.x >= self.player.x and self.ball.x <= self.player.x + len(self.player.block):
                 return True
         return False
 
     def game_loop(self):
-        self.active()
-        self.setupGPIO()
         try:
             dx, dy = 3, 3
             while True:
@@ -138,6 +136,15 @@ class MiniGame():
         finally:
             self.sleep()
             self.stop()
+
+    def Start(self):
+        self.active()
+        self.setupGPIO()
+        while True:
+            self.draw_text("Press Enter to Start", (10, 50))
+            if GPIO.input(self.enter) == GPIO.LOW:
+                break
+        self.game_loop()
     
 
 
