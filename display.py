@@ -134,11 +134,13 @@ class Displayer():
         self.show_frame(image)
     
     def testButton(self):
+        print("Starting testButton...")
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.switch, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.enter, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        print("hoan tat setup")
         
         try:
             while True:
