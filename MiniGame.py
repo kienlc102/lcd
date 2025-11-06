@@ -27,7 +27,7 @@ class MiniGame():
             self.left = 13
             self.right = 7
             self.enter = 22
-            self.player = player.player("--",60, 80)
+            self.player = player.player("***",60, 80)
             self.ball = ball.ball(0, 0)
     
     def active(self):
@@ -108,7 +108,7 @@ class MiniGame():
         try:
             while True:
                 self.clear()
-                self.draw_text(self.player.block, (self.ball.x + 10, self.ball.y + 10))
+                self.draw_text(self.player.block, (self.player.x + 10, self.player.y + 10))
                 self.draw_text("*", (self.ball.x, self.ball.y))
                 time.sleep(5)
         except KeyboardInterrupt:
