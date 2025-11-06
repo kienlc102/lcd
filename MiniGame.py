@@ -123,12 +123,18 @@ class MiniGame():
                     dx = -dx
                 if self.ball.y <= 0 or self.Collision():
                     dy = -dy
+                if self.ball.y >= 127:
+                    print("Game Over!")
+                    self.Start()
+                    break
 
                 # Player movement
                 if GPIO.input(self.left) == GPIO.LOW:
                     self.player.goLeft()
                 if GPIO.input(self.right) == GPIO.LOW:
                     self.player.goRight()
+
+                
                 time.sleep(0.1)
                 
         except KeyboardInterrupt:
